@@ -1,24 +1,36 @@
 import { useState } from "react";
 import { GrClose } from "react-icons/gr";
 
-function CreateTask({ isFormOpen, setFormStatus }) {
-  
-  const [taskForm, setTaskForm] = useState({
-    task_name: "",
-    task_description: "",
-    due_date: ''
-  })
+const initialForm = {
+  task_name: "",
+  task_description: "",
+  due_date: "",
+};
 
-  const checkFormValue = Object.values(taskForm).every(value => value !== undefined && value !== null && value !== false && value)
-  console.log("Task Form Status: ", checkFormValue)
-  
+function CreateTask({ isFormOpen, setFormStatus }) {
+  const [taskForm, setTaskForm] = useState(initialForm);
+
+  const checkFormValue = Object.values(taskForm).every(
+    (value) => value !== undefined && value !== null && value !== false && value
+  );
+  console.log("Task Form Status: ", checkFormValue);
+
   if (!isFormOpen) {
     return null;
   }
-  const handleTaskFormSubmit = e =>{
+  const handleTaskFormSubmit = (e) => {
     e.preventDefault();
-    console.log("User Form is Submitted.")
-  }
+    let previousTask = JSON.parse(localStorage.getItem("task"));
+    // This if set prev Task to iterable if it is not.
+    if (!previousTask) {
+      previousTask = [];
+    }
+    // Set the local Storage
+    localStorage.setItem("task", JSON.stringify([...previousTask, taskForm]));
+    setTaskForm(initialForm);
+    setFormStatus(false);
+    console.log("User Form is Submitted with Task Detail: ", taskForm);
+  };
   return (
     <div className="border-2 border-red-800 fixed top-0 bottom-0 left-0 right-0">
       <div className="max-w-[700px] max-h-[600px] absolute top-1/4 bottom-10 left-10 right-10 md:left-1/3 md:right-1/3 shadow-2xl shadow-violet-300 rounded-2xl bg-sky-800 p-5">
@@ -33,7 +45,10 @@ function CreateTask({ isFormOpen, setFormStatus }) {
           />
         </div>
         <hr className="my-3" />
-        <form className="h-5/6 flex flex-col justify-between" onSubmit={handleTaskFormSubmit}>
+        <form
+          className="h-5/6 flex flex-col justify-between"
+          onSubmit={handleTaskFormSubmit}
+        >
           <div className="flex flex-col">
             <label
               className="text-white font-bold leading-loose"
@@ -47,7 +62,9 @@ function CreateTask({ isFormOpen, setFormStatus }) {
               name="createTaskName"
               id="createTaskName"
               value={taskForm.task_name}
-              onChange={(e) => setTaskForm({...taskForm, task_name: e.target.value})}
+              onChange={(e) =>
+                setTaskForm({ ...taskForm, task_name: e.target.value })
+              }
             />
           </div>
           <div className="flex flex-col">
@@ -64,7 +81,9 @@ function CreateTask({ isFormOpen, setFormStatus }) {
               cols="30"
               rows="5"
               value={taskForm.task_description}
-              onChange={(e) => setTaskForm({...taskForm, task_description: e.target.value})}
+              onChange={(e) =>
+                setTaskForm({ ...taskForm, task_description: e.target.value })
+              }
             ></textarea>
           </div>
           <div className="flex flex-col">
@@ -77,11 +96,16 @@ function CreateTask({ isFormOpen, setFormStatus }) {
               name=""
               id=""
               value={taskForm.due_date}
-              onChange={(e) => setTaskForm({...taskForm, due_date: e.target.value})}                                  
+              onChange={(e) =>
+                setTaskForm({ ...taskForm, due_date: e.target.value })
+              }
             />
           </div>
           <div className="flex place-content-end gap-10 mt-5">
-            <button disabled={!checkFormValue} className="create ring ring-offset-1 ring-violet-300 rounded-md w-20 text-white font-bold bg-green-500 enabled:hover:ring-violet-500 enabled:hover:ring-offset-2 enabled:hover:bg-green-700">
+            <button
+              disabled={!checkFormValue}
+              className="create ring ring-offset-1 ring-violet-300 rounded-md w-20 text-white font-bold bg-green-500 enabled:hover:ring-violet-500 enabled:hover:ring-offset-2 enabled:hover:bg-green-700"
+            >
               Add
             </button>
             <button
