@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
 import Card from "./Card";
 
-function ToDoList() {
+function ToDoList({taskList}) {
+  
   return (
     <div className="task-container">
       <h1 className="text-center text-4xl text-sky-600 font-bold">
@@ -15,9 +17,9 @@ function ToDoList() {
         }}
       >
         {/* Task Card START */}
-        {Array.from(Array(10), (x) => x).map((i) => {
+        {taskList.map((task, index) => {
           return (
-            <Card i={i}/>
+            <Card i={index} task={task}/>
           );
         })}
         {/* Task Card END */}

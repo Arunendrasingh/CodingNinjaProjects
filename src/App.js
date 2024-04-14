@@ -1,12 +1,25 @@
+import { useState, useEffect } from "react";
 import "./App.css";
 import { CgCheckR } from "react-icons/cg";
 import ToDoList from "./components/ToDoList";
 import CreateTask from "./modals/CreateTask";
-import { useState } from "react";
 
 function App() {
   // TODO: Now Implement web local storage , to save task detail. 
   const [isAddForm, setIsAddForm] = useState(false);
+  const [taskList, setTaskList] = useState([]);
+
+  useEffect(() => {
+    const tasks = JSON.parse(localStorage.getItem("task"))
+    console.log("Running Use Effect to load", tasks)
+    if (!tasks){
+      setTaskList([]);
+    }else{
+      console.log("Setting the Task List.")
+      setTaskList(tasks);
+    }
+
+  }, [isAddForm])
   return (
     <div className="container mx-auto">
       {/* Header Start */}
@@ -31,7 +44,7 @@ function App() {
       </div>
       {/* Task Create Button End */}
       <CreateTask isFormOpen={isAddForm} setFormStatus={setIsAddForm} />
-      <ToDoList />
+      <ToDoList taskList={taskList} />
     </div>
   );
 }

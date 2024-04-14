@@ -1,8 +1,8 @@
-function Card({i}) {
+function Card({task}) {
   return (
     <iframe
       className="w-full rounded-xl border-b-4 p-5 border-slate-500"
-      title={i}
+      title={task.task_name}
       srcdoc={`<!DOCTYPE html>
             <html lang="en">
               <head>
@@ -20,15 +20,11 @@ function Card({i}) {
                 <div class="grid md:grid-cols-3">
                 <div class="md:col-span-2">
                   <h1 class="ms-1 text-3xl font-semibold">
-                    This is Task Heading
+                    ${task.task_name}
                   </h1>
-                  <span class="ms-3 text-gray-400"><strong>Due By: </strong>23-oct-2024</span>
+                  <span class="ms-3 text-gray-400"><strong>Due By: </strong>${task.due_date}</span>
                   <p class="ms-3 mt-3">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Voluptatum incidunt pariatur blanditiis natus ullam sequi
-                  qui. Cum voluptas, maiores recusandae nisi enim vel
-                    praesentium consequatur id? Voluptas saepe maxime
-                    voluptatum?
+                  L${task.task_description}
                     </p>
                     </div>
                     <div class="m-3 flex items-end justify-between md:me-10 md:flex-col">
