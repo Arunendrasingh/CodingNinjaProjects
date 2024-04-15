@@ -7,7 +7,7 @@ const initialForm = {
   due_date: "",
 };
 
-function CreateTask({ isFormOpen, setFormStatus }) {
+function CreateTask({ addNewTask, isFormOpen, setFormStatus }) {
   const [taskForm, setTaskForm] = useState(initialForm);
 
   const checkFormValue = Object.values(taskForm).every(
@@ -20,16 +20,8 @@ function CreateTask({ isFormOpen, setFormStatus }) {
   }
   const handleTaskFormSubmit = (e) => {
     e.preventDefault();
-    let previousTask = JSON.parse(localStorage.getItem("task"));
-    // This if set prev Task to iterable if it is not.
-    if (!previousTask) {
-      previousTask = [];
-    }
-    // Set the local Storage
-    localStorage.setItem("task", JSON.stringify([...previousTask, taskForm]));
+    addNewTask(taskForm);
     setTaskForm(initialForm);
-    setFormStatus(false);
-    console.log("User Form is Submitted with Task Detail: ", taskForm);
   };
   return (
     <div className="border-2 border-red-800 fixed top-0 bottom-0 left-0 right-0">
