@@ -20,6 +20,15 @@ function ToDoList({ taskList, deleteTask }) {
     };
   }, [deleteTask]);
 
+  if (taskList.length < 1){
+    return (
+      <div className="task-container text-center mt-20">
+        <h2 className="text-3xl text-red-500 subpixel-antialiased font-bold decoration-wavy uppercase">No Task Present.</h2>
+        <p>Add new Task.....</p>
+      </div>
+    )
+  }
+
   return (
     <div className="task-container">
       <h1 className="text-center text-4xl text-sky-600 font-bold">
