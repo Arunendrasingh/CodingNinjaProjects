@@ -2,13 +2,16 @@
 import { useEffect } from "react";
 import Card from "./Card";
 
-function ToDoList({ taskList, deleteTask }) {
+function ToDoList({ taskList, deleteTask, openEditForm }) {
   useEffect(() => {
     const handleMessage = (e) => {
       // Check for message & call the appropriate callback methods if applicable.
       const message = e.data;
       if (message.type === "DELETE_TASK") {
         deleteTask(message.payload);
+      }else if (message.type === "EDIT_TASK") {
+        // Update state to open Edit Form
+        openEditForm(message.payload)
       }
     };
     window.postMessageRegistered = true;
@@ -18,7 +21,7 @@ function ToDoList({ taskList, deleteTask }) {
       // Cleanup function >> even cleanup
       window.removeEventListener("message", handleMessage);
     };
-  }, [deleteTask]);
+  }, [deleteTask, openEditForm]);
 
   if (taskList.length < 1){
     return (
