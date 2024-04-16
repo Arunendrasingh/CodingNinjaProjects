@@ -3,25 +3,25 @@ import { useEffect } from "react";
 import Card from "./Card";
 
 function ToDoList({ taskList, deleteTask, openEditForm }) {
-  useEffect(() => {
-    const handleMessage = (e) => {
-      // Check for message & call the appropriate callback methods if applicable.
-      const message = e.data;
-      if (message.type === "DELETE_TASK") {
-        deleteTask(message.payload);
-      }else if (message.type === "EDIT_TASK") {
-        // Update state to open Edit Form
-        openEditForm(message.payload)
-      }
-    };
-    window.postMessageRegistered = true;
-    window.addEventListener("message", handleMessage);
+  // useEffect(() => {
+  //   const handleMessage = (e) => {
+  //     // Check for message & call the appropriate callback methods if applicable.
+  //     const message = e.data;
+  //     if (message.type === "DELETE_TASK") {
+  //       deleteTask(message.payload);
+  //     }else if (message.type === "EDIT_TASK") {
+  //       // Update state to open Edit Form
+  //       openEditForm(message.payload)
+  //     }
+  //   };
+  //   window.postMessageRegistered = true;
+  //   window.addEventListener("message", handleMessage);
 
-    return () => {
-      // Cleanup function >> even cleanup
-      window.removeEventListener("message", handleMessage);
-    };
-  }, [deleteTask, openEditForm]);
+  //   return () => {
+  //     // Cleanup function >> even cleanup
+  //     window.removeEventListener("message", handleMessage);
+  //   };
+  // }, [deleteTask, openEditForm]);
 
   if (taskList.length < 1){
     return (
@@ -53,6 +53,7 @@ function ToDoList({ taskList, deleteTask, openEditForm }) {
               index={index}
               task={task}
               deleteTask={deleteTask}
+              openEditForm={openEditForm}
             />
           );
         })}
