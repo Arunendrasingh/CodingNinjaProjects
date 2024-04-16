@@ -1,36 +1,62 @@
-import React from 'react'
-import { useGlobalContext } from './context'
-const CartItem = () => {
-
+import React from "react";
+// import { useGlobalContext } from "./context";
+const CartItem = ({ item }) => {
+  let { title, price, img, amount } = item;
   return (
-    <article className='cart-item'>
-      <img src={} alt={} />
-      <div>
-      
-        <h4 className='item-price'></h4>
-        {/* remove button */}
-        <button className='remove-btn' >
-       
-        </button>
-      </div>
-      <div>
-        {/* increase amount */}
-        <button className='amount-btn' >
-          <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'>
-            <path d='M10.707 7.05L10 6.343 4.343 12l1.414 1.414L10 9.172l4.243 4.242L15.657 12z' />
-          </svg>
-        </button>
-        {/* amount */}
-        <p className='amount'></p>
-        {/* decrease amount */}
-        <button className='amount-btn'>
-          <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'>
-            <path d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z' />
-          </svg>
-        </button>
+    <article className="cart-item flex ms-3 my-3">
+      <img src={img} alt={title} className="w-40 scale-95 min-h-52" />
+      <div className="ms-5 flex flex-col justify-between mb-2">
+        <div>
+          <h4 className="font-bold text-xl capitalize">{title}</h4>
+          <h4 className="item-price font-semibold text-gray-500">$ {price}</h4>
+        </div>
+        <div className="flex">
+          {/* increase amount */}
+          <button className="amount-btn border-2 border-gray-300 rounded-full">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="w-6 h-4"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 4.5v15m7.5-7.5h-15"
+              />
+            </svg>
+          </button>
+          {/* amount */}
+          <p className="amount mx-2 w-max min-w-10 text-center border-2 border-slate-300">
+          {amount}
+          </p>
+          {/* decrease amount */}
+          <button className="amount-btn border-2 border-gray-300 rounded-full">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-4"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5 12h14"
+              />
+            </svg>
+          </button>
+          {/* remove button */}
+          <button className="remove-btn uppercase ms-5 hover:text-blue-600 font-semibold hover:font-bold">
+            Remove
+          </button>
+        </div>
       </div>
     </article>
-  )
-}
+  );
+};
 
-export default CartItem
+export default CartItem;
