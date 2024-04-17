@@ -4,6 +4,7 @@ import EmptyCart from "./components/EmptyCart.jsx";
 import Navbar from "./components/Navbar.jsx";
 import CartContainer from "./components/CartContainer.jsx";
 import cartItem from "./data.js";
+import Loader from "./components/Loader.jsx";
 
 function App() {
   // const { loading } = useGlobalContext()
@@ -17,6 +18,7 @@ function App() {
   }
   return (
     <>
+    <Loader />
       <Navbar />
       <section className="mt-20 m-3">
         <EmptyCart />
