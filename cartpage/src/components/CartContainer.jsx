@@ -15,11 +15,11 @@ const CartContainer = ({ cart }) => {
     );
   }
   return (
-    <section className="cart grid grid-cols-6 grid-flow-dense gap-2 mt-20 w-4/5 m-auto">
+    <section className="cart grid grid-cols-6 grid-flow-dense gap-2 w-4/5 m-auto">
       {/* cart header */}
 
       {/* Now two main div 1: Div for all cartItems, 2: for total price related Detail & Clear cart button two */}
-      <div className="col-span-4 bg-white relative">
+      <div className="col-span-4 bg-white relative rounded-sm">
         {/* Here will print cart Items */}
         <div className="divide-y-2">
           {cart.map((value) => (
@@ -32,7 +32,7 @@ const CartContainer = ({ cart }) => {
           </button>
         </div>
       </div>
-      <div className="sticky top-16 cart-total h-max col-span-2 bg-white divide-y-2">
+      <div className="sticky top-16 h-max col-span-2 bg-white divide-y-2 rounded-sm">
         <h4 className="w-full font-semibold text-2xl text-slate-500 ms-3 my-3">
           Price Details
         </h4>

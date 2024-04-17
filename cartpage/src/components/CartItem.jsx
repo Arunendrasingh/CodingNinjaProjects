@@ -4,8 +4,8 @@ const CartItem = ({ item }) => {
   let { title, price, img, amount } = item;
   return (
     <article className="cart-item flex ms-3 my-3">
-      <img src={img} alt={title} className="w-40 scale-95 min-h-52" />
-      <div className="ms-5 flex flex-col justify-between mb-2">
+      <img src={img} alt={title} className="object-cover max-w-40 scale-95 min-h-52 rounded-xl" />
+      <div className="ms-5 flex flex-col justify-between mb-2 ">
         <div>
           <h4 className="font-bold text-xl capitalize">{title}</h4>
           <h4 className="item-price font-semibold text-gray-500">$ {price}</h4>

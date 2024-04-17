@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import Navbar from "./Navbar";
-import CartContainer from "./CartContainer";
 // import { useGlobalContext } from './context'
-import cartItem from "./data.js"
+import EmptyCart from "./components/EmptyCart.jsx";
+import Navbar from "./components/Navbar.jsx";
+import CartContainer from "./components/CartContainer.jsx";
+import cartItem from "./data.js";
 
 function App() {
   // const { loading } = useGlobalContext()
@@ -10,14 +11,17 @@ function App() {
   if (loading) {
     return (
       <div className="loading">
-        <h1></h1>
+        <h1>Loading....</h1>
       </div>
     );
   }
   return (
     <>
       <Navbar />
-      <CartContainer cart={cartItem} />
+      <section className="mt-20 m-3">
+        <EmptyCart />
+        <CartContainer cart={cartItem} />
+      </section>
     </>
   );
 }

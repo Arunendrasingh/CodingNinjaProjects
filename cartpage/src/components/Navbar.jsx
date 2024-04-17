@@ -4,8 +4,8 @@ import React from "react";
 const Navbar = () => {
   // const { amount } = useGlobalContext()
   return (
-    <nav>
-      <div className="nav-center fixed top-0 left-0 right-0 z-10 flex justify-around items-center h-14 bg-blue-500 shadow-2xl">
+    <nav className="sticky top-0 z-10">
+      <div className="nav-center flex justify-around items-center h-14 bg-blue-500 shadow-2xl">
         <h3 className="text-3xl text-white font-semibold">CartPage</h3>
         <div className="nav-container w-8 relative">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

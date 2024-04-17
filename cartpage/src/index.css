@@ -1,3 +1,6 @@
 body{
-    background-color: rgb(223, 223, 223)
+    background-color: rgb(223, 223, 223);
+    position: relative;
+    margin: 0;
+    padding: 0;
 }
