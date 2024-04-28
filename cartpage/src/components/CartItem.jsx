@@ -10,7 +10,7 @@ const CartItem = ({ item }) => {
           <h4 className="font-bold text-xl capitalize">{title}</h4>
           <h4 className="item-price font-semibold text-gray-500">$ {price}</h4>
         </div>
-        <div className="flex">
+        <div className="flex flex-wrap">
           {/* increase amount */}
           <button className="amount-btn border-2 border-gray-300 rounded-full">
             <svg
@@ -33,7 +33,7 @@ const CartItem = ({ item }) => {
           {amount}
           </p>
           {/* decrease amount */}
-          <button className="amount-btn border-2 border-gray-300 rounded-full">
+          <button className="amount-btn border-2 border-gray-300 rounded-full me-3">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -50,7 +50,7 @@ const CartItem = ({ item }) => {
             </svg>
           </button>
           {/* remove button */}
-          <button className="remove-btn uppercase ms-5 hover:text-blue-600 font-semibold hover:font-bold">
+          <button className="remove-btn uppercase hover:text-blue-600 font-semibold hover:font-bold">
             Remove
           </button>
         </div>

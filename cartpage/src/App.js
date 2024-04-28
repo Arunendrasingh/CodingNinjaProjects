@@ -18,9 +18,9 @@ function App() {
   }
   return (
     <>
-    <Loader />
+    {/* <Loader /> */}
       <Navbar />
-      <section className="mt-20 m-3">
+      <section className="pt-18 p-3">
         <EmptyCart />
         <CartContainer cart={cartItem} />
       </section>
