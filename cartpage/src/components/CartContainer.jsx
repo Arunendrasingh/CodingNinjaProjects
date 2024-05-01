@@ -1,15 +1,30 @@
 import React from "react";
 import CartItem from "./CartItem";
-// import { useGlobalContext } from "./context";
+import EmptyCart from "./EmptyCart";
+import { useCartContext } from "../context/context";
 
-const CartContainer = ({ cart }) => {
+const CartContainer = () => {
+  const { cart, clearCart } = useCartContext();
+
+  // Use reduce method to calculate the price....
+  let totalPrice = 0;
+  if (cart.length > 0) {
+    totalPrice = cart.reduce(
+      (accumulator, currentValue) =>
+        accumulator + currentValue.amount * currentValue.price, 0
+    );
+  }
+
+  console.log("Total Price is: ", totalPrice)
+
   if (cart.length === 0) {
     return (
       <section className="cart">
         {/* cart header */}
         <header>
-          <h2>Products In Cart</h2>
-          <h4 className="empty-cart">Your cart is empty</h4>
+          <EmptyCart />
+          {/* <h2>Products In Cart</h2> */}
+          {/* <h4 className="empty-cart">Your cart is empty</h4> */}
         </header>
       </section>
     );
@@ -23,11 +38,14 @@ const CartContainer = ({ cart }) => {
         {/* Here will print cart Items */}
         <div className="divide-y-2">
           {cart.map((value) => (
-            <CartItem item={value} />
+            <CartItem item={value} key={value.id} />
           ))}
         </div>
         <div className="clear-button-div sticky bottom-0 h-16 bg-white w-full lg:shadow-2xl lg:shadow-blue-500 lg:z-10">
-          <button className="btn clear-btn ring-2 ring-blue-600 ring-offset-1 hover:ring-offset-2 hover:bg-orange-600 text-white font-semibold hover:font-bold w-2/6 h-1/2 rounded bg-orange-500 float-end my-4 me-3">
+          <button
+            onClick={clearCart}
+            className="btn clear-btn ring-2 ring-blue-600 ring-offset-1 hover:ring-offset-2 hover:bg-orange-600 text-white font-semibold hover:font-bold w-2/6 h-1/2 rounded bg-orange-500 float-end my-4 me-3"
+          >
             CLEAR CART
           </button>
         </div>
@@ -39,16 +57,16 @@ const CartContainer = ({ cart }) => {
         <div className="details m-3">
           <p className="flex justify-between">
             <span>
-              <strong>Price</strong>(6 items)
+              <strong>Price</strong>({cart.length} items)
             </span>
-            <span className="cart-total font-semibold">$24242344</span>
+            <span className="cart-total font-semibold">$ {totalPrice}</span>
           </p>
 
           <div className="h-12 flex items-center justify-between border-y-2 my-5 border-dashed">
             <span className="text-2xl">
               <strong>Total Amount</strong>
             </span>
-            <span className="font-bold">$23457385</span>
+            <span className="font-bold">$ {totalPrice}</span>
           </div>
         </div>
       </div>

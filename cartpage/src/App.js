@@ -1,28 +1,19 @@
-import React, { useState } from "react";
-// import { useGlobalContext } from './context'
-import EmptyCart from "./components/EmptyCart.jsx";
+import React from "react";
 import Navbar from "./components/Navbar.jsx";
 import CartContainer from "./components/CartContainer.jsx";
-import cartItem from "./data.js";
 import Loader from "./components/Loader.jsx";
+import { useCartContext } from "./context/context.js";
 
 function App() {
-  // const { loading } = useGlobalContext()
-  const [loading, setLoading] = useState(false);
+  const { loading } = useCartContext();
   if (loading) {
-    return (
-      <div className="loading">
-        <h1>Loading....</h1>
-      </div>
-    );
+    return <Loader />;
   }
   return (
     <>
-    {/* <Loader /> */}
       <Navbar />
       <section className="pt-18 p-3">
-        <EmptyCart />
-        <CartContainer cart={cartItem} />
+        <CartContainer />
       </section>
     </>
   );
