@@ -30,18 +30,18 @@ const CartContainer = () => {
     );
   }
   return (
-    <section className="cart grid grid-rows-2 grid-flow-row auto-rows-max lg:grid-cols-6 lg:grid-flow-dense gap-2 lg:w-4/5 w-auto m-auto">
+    <section className="cart grid  grid-cols-6 grid-flow-dense gap-2 lg:w-4/5 w-auto m-auto">
       {/* cart header */}
 
       {/* Now two main div 1: Div for all cartItems, 2: for total price related Detail & Clear cart button two */}
-      <div className="lg:col-span-4 bg-white relative w-7/8 rounded-sm">
+      <div className="col-span-4 bg-white relative w-7/8 rounded-sm">
         {/* Here will print cart Items */}
         <div className="divide-y-2">
           {cart.map((value) => (
             <CartItem item={value} key={value.id} />
           ))}
         </div>
-        <div className="clear-button-div sticky bottom-0 h-16 bg-white w-full lg:shadow-2xl lg:shadow-blue-500 lg:z-10">
+        <div className="clear-button-div sticky bottom-0 h-16 bg-white w-full shadow-2xl shadow-blue-500 lg:z-10">
           <button
             onClick={clearCart}
             className="btn clear-btn ring-2 ring-blue-600 ring-offset-1 hover:ring-offset-2 hover:bg-orange-600 text-white font-semibold hover:font-bold w-2/6 h-1/2 rounded bg-orange-500 float-end my-4 me-3"
@@ -50,7 +50,7 @@ const CartContainer = () => {
           </button>
         </div>
       </div>
-      <div className="sticky top-16 h-max lg:col-span-2 bg-white divide-y-2 rounded-sm">
+      <div className="sticky top-16 h-max col-span-2 bg-white divide-y-2 rounded-sm">
         <h4 className="w-full font-semibold text-2xl text-slate-500 ms-3 my-3">
           Price Details
         </h4>
@@ -59,14 +59,14 @@ const CartContainer = () => {
             <span>
               <strong>Price</strong>({cart.length} items)
             </span>
-            <span className="cart-total font-semibold">$ {totalPrice}</span>
+            <span className="cart-total span">${totalPrice}</span>
           </p>
 
-          <div className="h-12 flex items-center justify-between border-y-2 my-5 border-dashed">
-            <span className="text-2xl">
-              <strong>Total Amount</strong>
+          <div className="cart-total span h-12 flex items-center justify-between border-y-2 my-5 border-dashed">
+            <span className="cart-total text-2xl">
+              Total
             </span>
-            <span className="font-bold">$ {totalPrice}</span>
+            <span className="cart-total font-bold">${totalPrice}</span>
           </div>
         </div>
       </div>
