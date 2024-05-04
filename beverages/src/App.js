@@ -1,4 +1,6 @@
 import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import Navbar from "./components/Navbar";
 import About from "./components/About";
 import Home from "./components/Home";
@@ -6,9 +8,13 @@ import Home from "./components/Home";
 function App() {
   return (
     <>
-      <Navbar />
-      {/* <About /> */}
-      <Home />
+      <BrowserRouter basename="/">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
