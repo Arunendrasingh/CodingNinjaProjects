@@ -7,6 +7,7 @@ function Home() {
   const [beverages, setBeverages] = useState([])
 
   // Write a use effect to load the cocktails from server
+  // TODO: Implements search features in app
 
   useEffect(() => {
     async function loadCocktails(){
