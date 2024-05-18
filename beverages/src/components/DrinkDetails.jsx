@@ -12,7 +12,6 @@ function DrinkDetails() {
   }
 
   const [productDetail, setProductDetail] = useState({});
-  console.log("Drink id is: ", drinkId);
   const {
     strDrinkThumb,
     strDrink,
@@ -26,7 +25,6 @@ function DrinkDetails() {
   const calculateIngredient = () => {
     let ingredient = [];
     for (let i = 1; i <= 15; i++) {
-      console.log(productDetail[`strIngredient${i}`])
       if (productDetail[`strIngredient${i}`] != null) {
         ingredient.push(productDetail[`strIngredient${i}`]);
       } else {
@@ -34,9 +32,7 @@ function DrinkDetails() {
       }
     }
 
-    console.log(ingredient)
     ingredient = ingredient.join(", ");
-    console.log(ingredient)
     return ingredient;
   }
 
@@ -49,7 +45,6 @@ function DrinkDetails() {
         // Now set the state of this component with the...
         let drinks = beverageDetail.drinks;
         if (drinks != null && drinks[0]) {
-          console.log("Drinks: ", drinks[0]);
           setProductDetail(drinks[0]);
         } else {
           console.warning(
@@ -58,7 +53,7 @@ function DrinkDetails() {
           navigate("/");
         }
       } catch (error) {
-        console.log(`Failed to get the Beverage Detail with ID: ${error}`);
+        console.error(`Failed to get the Beverage Detail with ID: ${error}`);
         navigate("/");
       }
     }

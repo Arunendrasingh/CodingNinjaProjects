@@ -16,7 +16,6 @@ function CocktailsCart({ detail }) {
     strInstructions,
     idDrink,
   } = detail;
-  console.log(detail);
   return (
     <div className="cocktail shadow-xl rounded-2xl">
       <img src={strDrinkThumb} alt="" className="p-1 rounded-2xl" />

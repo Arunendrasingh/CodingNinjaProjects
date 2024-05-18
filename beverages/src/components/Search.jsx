@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-function Search() {
+const url1 = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
+
+function Search({ search, setSearch }) {
+  
+
   return (
     <div className="search-form my-3 w-5/6 mx-auto shadow-xl py-5 rounded-xl">
       <h3 className="text-center font-mono pt-3 mb-2">
@@ -26,6 +30,8 @@ function Search() {
         <input
           type="text"
           name="search"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
           id="search"
           placeholder="Search Beverages"
           className="w-full h-14 hover:ring-2 rounded-lg p-3 ring-offset-2 ring-sky-600 hover:ring-offset-4"
