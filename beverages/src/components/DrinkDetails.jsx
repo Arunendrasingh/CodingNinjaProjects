@@ -20,7 +20,6 @@ function DrinkDetails() {
     strCategory,
     strAlcoholic,
     strInstructions,
-    idDrink,
     strGlass,
   } = productDetail;
 
@@ -36,11 +35,15 @@ function DrinkDetails() {
 
     ingredient = ingredient.join(", ");
     return ingredient;
+  };
+
+  function backToHomeClicked(){
+    navigate("/")
   }
 
   useEffect(() => {
     async function fetchBeverageWithId() {
-      setLoading(true)
+      setLoading(true);
       try {
         const response = await fetch(url + drinkId);
         const beverageDetail = await response.json();
@@ -53,70 +56,81 @@ function DrinkDetails() {
           console.warning(
             `Failed to fined the Beverage Detail with id: ${drinkId}`
           );
-          setLoading(false)
+          setLoading(false);
           navigate("/");
         }
       } catch (error) {
         console.error(`Failed to get the Beverage Detail with ID: ${error}`);
-        setLoading(false)
+        setLoading(false);
         navigate("/");
       }
-      setLoading(false)
+      setLoading(false);
     }
 
     fetchBeverageWithId();
   }, [drinkId, navigate]);
 
   return (
-    <div className="my-2 w-5/6 m-auto mt-10">
+    <>
       {loading && <Loader />}
-      <h1 className=".section-title text-center font-bold text-5xl mt-4 text-sky-800">
-        {strDrink}
-      </h1>
-      <div className="grid grid-rows-1 ss:grid-cols-2 mt-10">
-        <div className="pb-2 ss:pb-0 ss:pe-2 border-b-2 ss:border-b-0">
-          <img src={strDrinkThumb} alt="" className="drink img rounded-lg" />
-        </div>
-        <div className="drink-info flex flex-col gap-3 border-t-2 ss:border-t-0 p-2">
-          <p>
-            <strong className="text-xl text-red-500">
-              <span>Name: </span>
-            </strong>
-            <span>{strDrink}</span>
-          </p>
-          <p>
-            <strong className="text-xl text-red-500">
-              <span>Category: </span>
-            </strong>
-            <span>{strCategory}</span>
-          </p>
-          <p>
-            <strong className="text-xl text-red-500">
-              <span>Info: </span>
-            </strong>
-            <span>{strAlcoholic}</span>
-          </p>
-          <p>
-            <strong className="text-xl text-red-500">
-              <span>Glass: </span>
-            </strong>
-            <span>{strGlass}</span>
-          </p>
-          <p>
-            <strong className="text-xl text-red-500">
-              <span>Instruction: </span>
-            </strong>
-            <span>{strInstructions}</span>
-          </p>
-          <p>
-            <strong className="text-xl text-red-500">
-              <span>Ingredient: </span>
-            </strong>
-            <span>{calculateIngredient()}</span>
-          </p>
+      <div className="my-2 w-5/6 m-auto mt-10">
+        <button onClick={backToHomeClicked} className="capitalize block mx-auto w-2/6 h-10 text-white font-semibold bg-red-500 rounded-xl mt-5">
+          back home
+        </button>
+        <h1 className=".section-title text-center font-bold text-5xl mt-4 text-sky-800">
+          {strDrink}
+        </h1>
+        <div className="grid grid-rows-1 ss:grid-cols-2 w-auto mt-10 mx-auto">
+          <div className="pb-2 ss:pb-0 ss:pe-2 border-b-2 ss:border-b-0">
+            <div className="border-2 rounded-xl ss:w-5/6 ss:mx-auto">
+              <img
+                src={strDrinkThumb}
+                alt=""
+                className="drink img rounded-lg ss:w-3/4 ss:mx-auto ss: my-5"
+              />
+            </div>
+          </div>
+          <div className="drink-info flex flex-col gap-3 border-t-2 ss:border-t-0 p-2">
+            <p>
+              <strong className="text-xl text-red-500">
+                <span>Name: </span>
+              </strong>
+              <span>{strDrink}</span>
+            </p>
+            <p>
+              <strong className="text-xl text-red-500">
+                <span>Category: </span>
+              </strong>
+              <span>{strCategory}</span>
+            </p>
+            <p>
+              <strong className="text-xl text-red-500">
+                <span>Info: </span>
+              </strong>
+              <span>{strAlcoholic}</span>
+            </p>
+            <p>
+              <strong className="text-xl text-red-500">
+                <span>Glass: </span>
+              </strong>
+              <span>{strGlass}</span>
+            </p>
+            <p>
+              <strong className="text-xl text-red-500">
+                <span>Instruction: </span>
+              </strong>
+              <span>{strInstructions}</span>
+            </p>
+            <p>
+              <strong className="text-xl text-red-500">
+                <span>Ingredient: </span>
+              </strong>
+              <span>{calculateIngredient()}</span>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
