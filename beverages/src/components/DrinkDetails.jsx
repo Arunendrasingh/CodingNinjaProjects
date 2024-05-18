@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Loader from "./Loader";
 
 const url = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
 
 function DrinkDetails() {
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { drinkId } = useParams();
 
@@ -38,6 +40,7 @@ function DrinkDetails() {
 
   useEffect(() => {
     async function fetchBeverageWithId() {
+      setLoading(true)
       try {
         const response = await fetch(url + drinkId);
         const beverageDetail = await response.json();
@@ -50,12 +53,15 @@ function DrinkDetails() {
           console.warning(
             `Failed to fined the Beverage Detail with id: ${drinkId}`
           );
+          setLoading(false)
           navigate("/");
         }
       } catch (error) {
         console.error(`Failed to get the Beverage Detail with ID: ${error}`);
+        setLoading(false)
         navigate("/");
       }
+      setLoading(false)
     }
 
     fetchBeverageWithId();
@@ -63,6 +69,7 @@ function DrinkDetails() {
 
   return (
     <div className="my-2 w-5/6 m-auto mt-10">
+      {loading && <Loader />}
       <h1 className=".section-title text-center font-bold text-5xl mt-4 text-sky-800">
         {strDrink}
       </h1>
